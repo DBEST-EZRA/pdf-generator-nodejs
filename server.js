@@ -15,15 +15,24 @@ app.post("/generate-invoice", (req, res) => {
   doc.pipe(fs.createWriteStream(invoicePath));
 
   // Add content to the PDF
-  doc.fontSize(25).text("University Invoice", { align: "center" });
+  doc.fontSize(22).text("Kenyatta University", { align: "center" });
   doc.moveDown();
-  doc.fontSize(16).text(`Name: ${name}`);
+  doc.fontSize(13).text(`Name: ${name}`);
   doc.text(`ID Number: ${idNumber}`);
   doc.text(`Course: ${course}`);
   doc.moveDown();
-  doc.text("This is a static dummy data for inviting people to a university.", {
-    align: "center",
-  });
+  doc.text(`Dear ${name}`);
+  doc.moveDown();
+  doc.text(
+    "We are thrilled to extend an invitation to you to join Kenyatta University for the upcoming academic year. Your impressive academic record and achievements have caught our attention, and we believe you would be a valuable addition to our vibrant and dynamic student community."
+  );
+  doc.moveDown();
+  doc.text(
+    "At Kenyatta University, we offer a diverse range of courses designed to provide a comprehensive and enriching educational experience. Our dedicated faculty members, state-of-the-art facilities, and a plethora of extracurricular activities ensure that our students receive a well-rounded education that prepares them for successful careers and fulfilling lives."
+  );
+  doc.text("Sincerely,");
+  doc.text("Joash Kerongo");
+  doc.text("Registrar, Academic Affairs");
 
   // Finalize the PDF
   doc.end();
